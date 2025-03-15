@@ -1,0 +1,68 @@
+{% extends 'loan/base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg p-4">
+                <h3 class="text-center mb-4">Welcome, {{ customer.user.username }} 👋</h3>
+
+                <!-- Loan Details -->
+                <div class="alert alert-info text-center">
+                    Your Loan Limit: <strong>Ksh {{ customer.loan_limit }}</strong>
+                </div>
+                <div class="alert alert-warning text-center">
+                    Processing Fee: <strong>Ksh {{ processing_fee }}</strong>
+                </div>
+                <div class="alert alert-success text-center">
+                    Pay to Till Number: 
+                    <strong id="till_number">{{ till_number }}</strong>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="copyTillNumber()">Copy</button>
+                </div>
+
+                <!-- Apply Loan Button -->
+                <a href="{% url 'apply_loan' %}" class="btn btn-primary w-100 mt-3">Apply for Loan</a>
+
+                <!-- Loan History -->
+                <h5 class="mt-4 text-center">Your Loan History</h5>
+                <table class="table table-bordered mt-3">
+                    <thead>
+                        <tr>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Payment Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for loan in customer.loans.all %}
+                            <tr>
+                                <td>Ksh {{ loan.amount }}</td>
+                                <td>
+                                    {% if loan.status == 'Pending' and loan.processing_fee_received %}
+                                        ✅ Sent to {{ customer.phone_number }}
+                                    {% else %}
+                                        {{ loan.status }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ loan.payment_date }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <!-- Logout Button -->
+                <a href="{% url 'logout' %}" class="btn btn-danger w-100 mt-3">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyTillNumber() {
+        const tillNumber = document.getElementById('till_number').textContent;
+        navigator.clipboard.writeText(tillNumber);
+        alert('Till Number copied successfully!');
+    }
+</script>
+
+{% endblock %}

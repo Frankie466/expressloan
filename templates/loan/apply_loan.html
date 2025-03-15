@@ -1,0 +1,106 @@
+{% extends 'loan/base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="mb-4 text-center text-primary fw-bold">💳 Apply for a Loan</h2>
+
+            <form method="POST" class="p-4 shadow bg-white rounded" id="loanForm">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Loan Amount (KES)</label>
+                    <input type="number" class="form-control" name="amount" placeholder="Enter amount (e.g. 1000, 2000)" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="purpose" class="form-label">Purpose of Loan</label>
+                    <textarea class="form-control" name="purpose" rows="4" placeholder="E.g. Business expansion, Education, Medical bills..." required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="duration" class="form-label">Loan Duration</label>
+                    <select class="form-control" name="duration" required>
+                        <option value="1 month">1 Month</option>
+                        <option value="3 months">3 Months</option>
+                        <option value="6 months">6 Months</option>
+                    </select>
+                </div>
+
+                <!-- Hidden Terms and Conditions -->
+                <div class="mb-3">
+                    <button type="button" class="btn btn-link p-0" onclick="toggleTerms()">📜 View Loan Terms and Conditions</button>
+                    <div id="terms" class="d-none mt-3 p-3 bg-light rounded">
+                        <p>✅ Interest rate is 5% per month.</p>
+                        <p>✅ Late repayment attracts a penalty.</p>
+                        <p>✅ Early repayment has no extra fees.</p>
+                        <p>✅ Defaulting may lead to account suspension.</p>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2" id="applyBtn">✅ Apply Now</button>
+            </form>
+
+            <!-- Progress Bar Section -->
+            <div class="mt-4 d-none" id="progressSection">
+                <p class="fw-bold text-center text-secondary" id="progressText">🔍 Checking Eligibility...</p>
+                <div class="progress mb-3">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" 
+                         role="progressbar" style="width: 0%;" id="progressBar1"></div>
+                </div>
+
+                <p class="fw-bold text-center text-secondary d-none" id="processingText">⚡ Processing Loan...</p>
+                <div class="progress d-none" id="progressBarContainer2">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" 
+                         role="progressbar" style="width: 0%;" id="progressBar2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS to handle progress bar and show hidden tab -->
+<script>
+    const loanForm = document.getElementById('loanForm');
+    const applyBtn = document.getElementById('applyBtn');
+    const progressSection = document.getElementById('progressSection');
+    const progressBar1 = document.getElementById('progressBar1');
+    const progressBar2 = document.getElementById('progressBar2');
+    const progressText = document.getElementById('progressText');
+    const processingText = document.getElementById('processingText');
+    const progressBarContainer2 = document.getElementById('progressBarContainer2');
+
+    loanForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        applyBtn.style.display = 'none';
+        progressSection.classList.remove('d-none');
+
+        let progress1 = 0;
+        const interval1 = setInterval(function() {
+            progress1 += 1;
+            progressBar1.style.width = progress1 + '%';
+            if (progress1 === 100) {
+                clearInterval(interval1);
+                progressText.classList.add('d-none');
+                processingText.classList.remove('d-none');
+                progressBarContainer2.classList.remove('d-none');
+
+                let progress2 = 0;
+                const interval2 = setInterval(function() {
+                    progress2 += 1;
+                    progressBar2.style.width = progress2 + '%';
+                    if (progress2 === 100) {
+                        clearInterval(interval2);
+                        window.location.href = "{% url 'dashboard' %}";
+                    }
+                }, 100); 
+            }
+        }, 50); 
+    });
+
+    function toggleTerms() {
+        const terms = document.getElementById('terms');
+        terms.classList.toggle('d-none');
+    }
+</script>
+{% endblock %}

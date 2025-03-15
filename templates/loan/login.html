@@ -1,0 +1,33 @@
+{% extends 'loan/base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow-lg" style="width: 400px;">
+        <h3 class="text-center mb-4 text-success">Login to Your Account</h3>
+
+        <!-- Display error message if credentials are invalid -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST" class="mb-3">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <label for="email">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="form-group mb-4">
+                <label for="password">Password</label>
+                {{ form.password }}
+            </div>
+            <button type="submit" class="btn btn-success w-100">Login</button>
+        </form>
+
+        <p class="text-center">
+            Don't have an account? <a href="{% url 'register' %}" class="text-success">Register</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

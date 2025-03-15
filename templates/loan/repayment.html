@@ -1,0 +1,74 @@
+{% extends 'loan/base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4">
+                <h3 class="text-center mb-4 text-primary fw-bold">💰 Loan Repayment</h3>
+
+                <form method="POST" class="needs-validation" novalidate>
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="loan_id" class="form-label">Loan ID</label>
+                        <input type="text" class="form-control" id="loan_id" name="loan_id" placeholder="Enter Loan ID" required>
+                        <div class="invalid-feedback">Loan ID is required.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="repayment_amount" class="form-label">Amount to Repay (KES)</label>
+                        <input type="number" class="form-control" id="repayment_amount" name="repayment_amount" placeholder="Enter Amount" required>
+                        <div class="invalid-feedback">Amount is required.</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 py-2">✅ Repay Now</button>
+                </form>
+
+                <hr class="my-4">
+
+                <!-- Repayment History Section -->
+                <h5 class="text-center text-secondary mb-3">📜 Repayment History</h5>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Loan ID</th>
+                            <th>Amount Repaid</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for repayment in repayments %}
+                            <tr>
+                                <td>{{ repayment.loan_id }}</td>
+                                <td>Ksh {{ repayment.amount }}</td>
+                                <td class="text-success">{{ repayment.status }}</td>
+                                <td>{{ repayment.date }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Form validation script
+    (function() {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+{% endblock %}

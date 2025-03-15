@@ -1,0 +1,52 @@
+{% extends 'loan/base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg p-4">
+                <h2 class="text-center text-primary fw-bold mb-4">💼 Loan Status</h2>
+
+                <div class="alert alert-warning text-center" role="alert">
+                    📌 Your loan application is <strong>Pending</strong>.
+                    <br>
+                    Ensure you have fulfilled the <strong>Processing Fee</strong> to receive your loan.
+                </div>
+
+                <!-- Loan Details -->
+                <div class="mt-4">
+                    <h5 class="text-secondary">Loan Details</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">Loan Amount: <strong>Ksh {{ loan.amount }}</strong></li>
+                        <li class="list-group-item">Loan Duration: <strong>{{ loan.duration }}</strong></li>
+                        <li class="list-group-item">Status: <span class="badge bg-warning text-dark">Pending</span></li>
+                    </ul>
+                </div>
+
+                <!-- Payment Confirmation Section -->
+                <div class="mt-4">
+                    <h5 class="text-secondary">Payment Confirmation</h5>
+                    <p class="text-muted">Please confirm your payment to the Till Number below:</p>
+                    <div class="alert alert-info text-center">
+                        💳 Pay to Till Number: <strong>{{ till_number }}</strong>
+                        <button class="btn btn-sm btn-outline-primary ms-2" onclick="copyTill()">Copy</button>
+                    </div>
+                </div>
+
+                <!-- Button to Refresh Status -->
+                <div class="text-center mt-4">
+                    <a href="{% url 'loan_status' %}" class="btn btn-primary">🔄 Refresh Status</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyTill() {
+        const tillNumber = "{{ till_number }}";
+        navigator.clipboard.writeText(tillNumber);
+        alert("Till number copied successfully!");
+    }
+</script>
+{% endblock %}

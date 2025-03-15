@@ -1,0 +1,83 @@
+{% extends 'loan/base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow-lg" style="width: 500px;">
+        <h3 class="text-center mb-4 text-success">Create an Account</h3>
+
+        <!-- Display Form Errors -->
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <strong>Oops!</strong> Please fix the following errors:
+                <ul>
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <form method="POST" class="mb-3">
+            {% csrf_token %}
+
+            <div class="form-group mb-3">
+                <label>Full Name</label>
+                {{ form.full_name }}
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Date of Birth</label>
+                {{ form.dob }}
+            </div>
+
+            <div class="form-group mb-3">
+                <label>ID Number</label>
+                {{ form.id_number }}
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Phone Number</label>
+                {{ form.phone_number }}
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Email</label>
+                {{ form.email }}
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Next of Kin Name</label>
+                {{ form.next_of_kin_name }}
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Next of Kin Phone</label>
+                {{ form.next_of_kin_phone }}
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Employment Status</label>
+                {{ form.employment_status }}
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Password</label>
+                {{ form.password }}
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Register</button>
+        </form>
+
+        <p class="text-center">
+            Already have an account? <a href="{% url 'login' %}" class="text-success">Login</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
