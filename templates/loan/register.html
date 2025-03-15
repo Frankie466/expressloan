@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4 shadow-lg" style="width: 500px;">
+    <div class="card p-4 shadow-lg" style="width: 500px; border-radius: 15px;">
         <h3 class="text-center mb-4 text-success">Create an Account</h3>
 
         <!-- Display Form Errors -->
@@ -22,62 +22,131 @@
         <form method="POST" class="mb-3">
             {% csrf_token %}
 
+            <!-- Full Name -->
             <div class="form-group mb-3">
-                <label>Full Name</label>
+                <label class="form-label">Full Name</label>
                 {{ form.full_name }}
             </div>
 
+            <!-- Date of Birth -->
             <div class="form-group mb-3">
-                <label>Date of Birth</label>
+                <label class="form-label">Date of Birth</label>
                 {{ form.dob }}
             </div>
 
+            <!-- ID Number -->
             <div class="form-group mb-3">
-                <label>ID Number</label>
+                <label class="form-label">ID Number</label>
                 {{ form.id_number }}
             </div>
 
+            <!-- Phone Number -->
             <div class="form-group mb-3">
-                <label>Phone Number</label>
+                <label class="form-label">Phone Number</label>
                 {{ form.phone_number }}
             </div>
 
+            <!-- Email -->
             <div class="form-group mb-3">
-                <label>Email</label>
+                <label class="form-label">Email</label>
                 {{ form.email }}
             </div>
 
+            <!-- Next of Kin Name -->
             <div class="form-group mb-3">
-                <label>Next of Kin Name</label>
+                <label class="form-label">Next of Kin Name</label>
                 {{ form.next_of_kin_name }}
             </div>
 
+            <!-- Next of Kin Phone -->
             <div class="form-group mb-3">
-                <label>Next of Kin Phone</label>
+                <label class="form-label">Next of Kin Phone</label>
                 {{ form.next_of_kin_phone }}
             </div>
 
+            <!-- Employment Status -->
             <div class="form-group mb-3">
-                <label>Employment Status</label>
+                <label class="form-label">Employment Status</label>
                 {{ form.employment_status }}
             </div>
 
+            <!-- Password -->
             <div class="form-group mb-3">
-                <label>Password</label>
+                <label class="form-label">Password</label>
                 {{ form.password }}
             </div>
 
+            <!-- Confirm Password -->
             <div class="form-group mb-3">
-                <label>Confirm Password</label>
+                <label class="form-label">Confirm Password</label>
                 <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
             </div>
 
+            <!-- Submit Button -->
             <button type="submit" class="btn btn-success w-100">Register</button>
         </form>
 
+        <!-- Login Link -->
         <p class="text-center">
             Already have an account? <a href="{% url 'login' %}" class="text-success">Login</a>
         </p>
     </div>
 </div>
+
+<!-- Custom CSS for Form Styling -->
+<style>
+    /* Add custom styles for form inputs */
+    .form-control {
+        border-radius: 8px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+    }
+
+    /* Style the date input */
+    input[type="date"] {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    /* Style the select dropdown */
+    select.form-control {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    /* Style the submit button */
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+    /* Style the card */
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style the alert box */
+    .alert-danger {
+        border-radius: 8px;
+        padding: 10px;
+    }
+</style>
 {% endblock %}
