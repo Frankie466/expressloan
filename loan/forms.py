@@ -18,7 +18,8 @@ class RegisterForm(forms.ModelForm):
         model = Customer
         fields = ['full_name', 'dob', 'id_number', 'phone_number', 'next_of_kin_name', 'next_of_kin_phone', 'employment_status']
         widgets = {
-            'dob': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),  # Calendar picker for dob
+            
+             dob = forms.DateField(widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}))  # Calendar picker for dob
             'full_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Full Name'}),
             'id_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'ID Number'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone Number'}),
