@@ -32,6 +32,7 @@
             <div class="form-group mb-3">
                 <label class="form-label">Date of Birth</label>
                 {{ form.dob }}
+                <small class="form-text text-muted">Format: dd.mm.yyyy</small>
             </div>
 
             <!-- ID Number -->
@@ -79,7 +80,7 @@
             <!-- Confirm Password -->
             <div class="form-group mb-3">
                 <label class="form-label">Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required>
+                {{ form.confirm_password }}
             </div>
 
             <!-- Submit Button -->
@@ -93,9 +94,28 @@
     </div>
 </div>
 
+<!-- Add Date Formatting Script -->
+<script>
+function formatDateInput(input) {
+    let value = input.value.replace(/[^0-9]/g, '');
+    let formatted = '';
+    
+    if (value.length > 0) {
+        formatted += value.substring(0, 2);
+    }
+    if (value.length >= 2) {
+        formatted += '.' + value.substring(2, 4);
+    }
+    if (value.length >= 4) {
+        formatted += '.' + value.substring(4, 8);
+    }
+    
+    input.value = formatted;
+}
+</script>
+
 <!-- Custom CSS for Form Styling -->
 <style>
-    /* Add custom styles for form inputs */
     .form-control {
         border-radius: 8px;
         padding: 10px;
@@ -108,25 +128,16 @@
         box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
     }
 
-    /* Style the date input */
-    input[type="date"] {
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid #ddd;
-    }
-
-    /* Style the select dropdown */
     select.form-control {
         padding: 10px;
         border-radius: 8px;
         border: 1px solid #ddd;
     }
 
-    /* Style the submit button */
     .btn-success {
         background-color: #28a745;
         border: none;
-        padding: 10px;
+        padding: 12px;
         border-radius: 8px;
         font-size: 16px;
         transition: background-color 0.3s ease;
@@ -136,14 +147,12 @@
         background-color: #218838;
     }
 
-    /* Style the card */
     .card {
         border: none;
         border-radius: 15px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    /* Style the alert box */
     .alert-danger {
         border-radius: 8px;
         padding: 10px;
