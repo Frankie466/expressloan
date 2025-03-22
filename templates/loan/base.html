@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{% url 'home' %}">EXPRESS LOAN</a>
@@ -27,21 +27,32 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
                     {% endif %}
-                    <!-- Email Support Link -->
-                    <li class="nav-item">
-                        <a class="nav-link text-warning" href="mailto:supportexpressloans@mail.com">
-                            <i class="bi bi-envelope"></i> Support
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-4">
-        {% block content %}
-        {% endblock %}
-    </div>
+    <main class="flex-grow-1">
+        <div class="container mt-4">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- Footer with Support Email -->
+    <footer class="bg-dark text-white mt-4 py-3">
+        <div class="container text-center">
+            <div class="mb-2">
+                <i class="bi bi-envelope me-2"></i>Contact Support:
+                <a href="mailto:supportexpressloans@mail.com" class="text-warning text-decoration-none">
+                    supportexpressloans@mail.com
+                </a>
+            </div>
+            <div class="text-muted">
+                © 2023 EXPRESS LOAN. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
