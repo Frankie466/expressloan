@@ -14,10 +14,12 @@
                 <div class="alert alert-warning text-center">
                     Processing Fee: <strong>Ksh {{ processing_fee }}</strong>
                 </div>
+
+                <!-- Payment Link (New Section) -->
                 <div class="alert alert-success text-center">
-                    Pay to Till Number: 
-                    <strong id="till_number">{{ till_number }}</strong>
-                    <button class="btn btn-sm btn-outline-secondary" onclick="copyTillNumber()">Copy</button>
+                    💳 Pay your Processing Fee here:
+                    <br>
+                    <a href="{{ payment_link }}" target="_blank" class="btn btn-primary btn-sm mt-2">Pay Now</a>
                 </div>
 
                 <!-- Apply Loan Button -->
@@ -56,13 +58,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    function copyTillNumber() {
-        const tillNumber = document.getElementById('till_number').textContent;
-        navigator.clipboard.writeText(tillNumber);
-        alert('Till Number copied successfully!');
-    }
-</script>
-
 {% endblock %}
