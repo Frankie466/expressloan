@@ -91,7 +91,7 @@ def loan_status(request):
     # Fetch the latest loan (optional)
     # loan = Loan.objects.filter(customer=customer).latest('created_at')
 
-    payment_link = "https://your-payment-provider.com/pay/12345"  # Replace with real payment link
+    payment_link = "https://paystack.com/pay/71vyzj7y7a"  # Replace with real payment link
 
     return render(request, 'loan/status.html', {
         'customer': customer,
