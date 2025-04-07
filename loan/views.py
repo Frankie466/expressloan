@@ -52,7 +52,7 @@ def dashboard(request):
     return render(request, 'loan/dashboard.html', {
         'customer': customer,
         'processing_fee': processing_fee,
-        'payment_link': 'https://your-payment-link.com/pay/12345'  # <-- your real payment link
+        'payment_link': 'https://paystack.com/pay/71vyzj7y7a'  # <-- your real payment link
     })
 
 
