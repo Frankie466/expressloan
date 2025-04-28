@@ -23,7 +23,13 @@ class Customer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def assign_loan_limit(self):
-        loan_limits = [1000, 1500, 2000, 2500, 3000]
+        loan_limits = [2500, 2700, 2900, 3000, 3200, 3400, 3500, 3700, 3900,
+        4000, 4200, 4400, 4500, 4700, 4900,
+        5000, 5200, 5400, 5500, 5700, 5900,
+        6000, 6200, 6400, 6500, 6700, 6900,
+        7000, 7200, 7400, 7500, 7700, 7900,
+        8000, 8200, 8400, 8500, 8700, 8900,
+        9000, 9200, 9400, 9500, 9700, 9900, 10000]
         self.loan_limit = random.choice(loan_limits)
         self.save()
 
