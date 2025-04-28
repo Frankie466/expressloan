@@ -2,101 +2,105 @@
 {% load static %}
 
 {% block content %}
-<div class="container my-5">
-    <!-- Welcome Section -->
-    <div class="row justify-content-center">
-        <div class="col-md-8 text-center">
-            <img src="https://github.com/Frankie466/expressloan/blob/master/static/images/logo.jpg.jpeg?raw=true" 
-                 class="img-fluid mb-4" style="max-width: 150px;" alt="Express Loan Logo">
+<div class="min-vh-100 py-5" style="background: linear-gradient(to bottom right, #e0f7fa, #ffffff);">
+    <div class="container">
 
-            <h1 class="mb-3 fw-bold">💼 Welcome to <span class="text-primary">EXPRESS LOAN</span></h1>
-            <p class="lead mb-4">
-                Get instant loans, track your loan status, and make repayments with ease. 
-                We offer flexible loan limits and quick approval for your financial needs.
-            </p>
+        <!-- Welcome Section -->
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <img src="https://github.com/Frankie466/expressloan/blob/master/static/images/logo.jpg.jpeg?raw=true" 
+                     class="img-fluid mb-4" style="max-width: 150px;" alt="Express Loan Logo">
 
-            {% if user.is_authenticated %}
-                <a href="{% url 'dashboard' %}" class="btn btn-outline-primary btn-lg m-2">📊 Dashboard</a>
-                <a href="{% url 'logout' %}" class="btn btn-outline-danger btn-lg m-2">🚪 Logout</a>
-            {% else %}
-                <a href="{% url 'register' %}" class="btn btn-success btn-lg m-2">📋 Register</a>
-                <a href="{% url 'login' %}" class="btn btn-primary btn-lg m-2">🔑 Login</a>
-            {% endif %}
+                <h1 class="mb-3 fw-bold">💼 Welcome to <span class="text-primary">EXPRESS LOAN</span></h1>
+                <p class="lead mb-4">
+                    Get instant loans, track your loan status, and make repayments with ease. 
+                    We offer flexible loan limits and quick approval for your financial needs.
+                </p>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard' %}" class="btn btn-outline-primary btn-lg m-2">📊 Dashboard</a>
+                    <a href="{% url 'logout' %}" class="btn btn-outline-danger btn-lg m-2">🚪 Logout</a>
+                {% else %}
+                    <a href="{% url 'register' %}" class="btn btn-success btn-lg m-2">📋 Register</a>
+                    <a href="{% url 'login' %}" class="btn btn-primary btn-lg m-2">🔑 Login</a>
+                {% endif %}
+            </div>
         </div>
+
+        <!-- Loan Features Section -->
+        <section class="mt-5">
+            <h2 class="text-center mb-4 fw-bold text-dark">Our Services</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0 hover-shadow">
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-3">📈 Track Loan Status</h5>
+                            <p class="card-text">Check the status of your loan application in real-time.</p>
+                            <a href="{% url 'loan_status' %}" class="btn btn-info text-white">Track Status</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0 hover-shadow">
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-3">💳 Make Repayment</h5>
+                            <p class="card-text">Securely repay your loan via M-Pesa, Airtel Money, or Bank Transfer.</p>
+                            <a href="{% url 'repayment' %}" class="btn btn-warning text-white">Repay Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0 hover-shadow">
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-3">🏦 Apply for Loan</h5>
+                            <p class="card-text">Get quick access to affordable loans based on your credit score.</p>
+                            <a href="{% url 'apply_loan' %}" class="btn btn-success text-white">Apply Loan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Customer Review Section -->
+        <section class="mt-5">
+            <h2 class="text-center mb-4 fw-bold text-dark">What Our Customers Say</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card text-center border-0 shadow-sm h-100 p-4 hover-shadow">
+                        <img src="https://github.com/Frankie466/expressloan/blob/master/static/images/profile1.jpg.jpeg?raw=true" 
+                             class="rounded-circle mx-auto mb-3" width="80" height="80" alt="John Doe">
+                        <h5 class="fw-bold">John Doe</h5>
+                        <p class="text-muted small">Business Owner</p>
+                        <p class="mb-0">"Express Loans saved my business when I needed urgent funding. The process was smooth and fast!"</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center border-0 shadow-sm h-100 p-4 hover-shadow">
+                        <img src="https://github.com/Frankie466/expressloan/blob/master/static/images/profile2.jpg.jpeg?raw=true" 
+                             class="rounded-circle mx-auto mb-3" width="80" height="80" alt="Jane Wanjiru">
+                        <h5 class="fw-bold">Jane Wanjiru</h5>
+                        <p class="text-muted small">Student</p>
+                        <p class="mb-0">"I got my education loan approved in just 2 hours! Highly recommend Express Loans."</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center border-0 shadow-sm h-100 p-4 hover-shadow">
+                        <img src="https://github.com/Frankie466/expressloan/blob/master/static/images/profile3.jpg.jpeg?raw=true" 
+                             class="rounded-circle mx-auto mb-3" width="80" height="80" alt="Michael Otieno">
+                        <h5 class="fw-bold">Michael Otieno</h5>
+                        <p class="text-muted small">Taxi Driver</p>
+                        <p class="mb-0">"The flexible repayment options have really helped me manage my income and grow my business."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-
-    <!-- Loan Features Section -->
-    <section class="mt-5">
-        <h2 class="text-center mb-4 fw-bold">Our Services</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0 hover-shadow">
-                    <div class="card-body text-center">
-                        <h5 class="card-title mb-3">📈 Track Loan Status</h5>
-                        <p class="card-text">Check the status of your loan application in real-time.</p>
-                        <a href="{% url 'loan_status' %}" class="btn btn-info text-white">Track Status</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0 hover-shadow">
-                    <div class="card-body text-center">
-                        <h5 class="card-title mb-3">💳 Make Repayment</h5>
-                        <p class="card-text">Securely repay your loan via M-Pesa, Airtel Money, or Bank Transfer.</p>
-                        <a href="{% url 'repayment' %}" class="btn btn-warning text-white">Repay Now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 shadow-sm border-0 hover-shadow">
-                    <div class="card-body text-center">
-                        <h5 class="card-title mb-3">🏦 Apply for Loan</h5>
-                        <p class="card-text">Get quick access to affordable loans based on your credit score.</p>
-                        <a href="{% url 'apply_loan' %}" class="btn btn-success text-white">Apply Loan</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Customer Review Section -->
-    <section class="mt-5">
-        <h2 class="text-center mb-4 fw-bold">What Our Customers Say</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card text-center border-0 shadow-sm h-100 p-4 hover-shadow">
-                    <img src="https://github.com/Frankie466/expressloan/blob/master/static/images/profile1.jpg.jpeg?raw=true" 
-                         class="rounded-circle mx-auto mb-3" width="80" height="80" alt="John Doe">
-                    <h5 class="fw-bold">John Doe</h5>
-                    <p class="text-muted small">Business Owner</p>
-                    <p class="mb-0">"Express Loans saved my business when I needed urgent funding. The process was smooth and fast!"</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-center border-0 shadow-sm h-100 p-4 hover-shadow">
-                    <img src="https://github.com/Frankie466/expressloan/blob/master/static/images/profile2.jpg.jpeg?raw=true" 
-                         class="rounded-circle mx-auto mb-3" width="80" height="80" alt="Jane Wanjiru">
-                    <h5 class="fw-bold">Jane Wanjiru</h5>
-                    <p class="text-muted small">Student</p>
-                    <p class="mb-0">"I got my education loan approved in just 2 hours! Highly recommend Express Loans."</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-center border-0 shadow-sm h-100 p-4 hover-shadow">
-                    <img src="https://github.com/Frankie466/expressloan/blob/master/static/images/profile3.jpg.jpeg?raw=true" 
-                         class="rounded-circle mx-auto mb-3" width="80" height="80" alt="Michael Otieno">
-                    <h5 class="fw-bold">Michael Otieno</h5>
-                    <p class="text-muted small">Taxi Driver</p>
-                    <p class="mb-0">"The flexible repayment options have really helped me manage my income and grow my business."</p>
-                </div>
-            </div>
-        </div>
-    </section>
 </div>
 
+<!-- Little Hover Shadow Effect -->
 <style>
 .hover-shadow:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease-in-out;
 }
 </style>
