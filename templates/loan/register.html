@@ -2,13 +2,13 @@
 {% load static %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4 shadow-lg" style="width: 500px; border-radius: 15px;">
-        <h3 class="text-center mb-4 text-success">Create an Account</h3>
+<div class="container d-flex justify-content-center align-items-center vh-100" style="background-color: #f8f9fa;">
+    <div class="card p-4 shadow-lg" style="width: 500px; border-radius: 15px; background-color: #ffffff; border: 1px solid #e0e0e0;">
+        <h3 class="text-center mb-4" style="color: #2c3e50;">Create an Account</h3>
 
         <!-- Display Form Errors -->
         {% if form.errors %}
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" style="background-color: #f8d7da; border-color: #f5c6cb; color: #721c24;">
                 <strong>Oops!</strong> Please fix the following errors:
                 <ul>
                     {% for field, errors in form.errors.items %}
@@ -25,72 +25,72 @@
 
             <!-- Full Name -->
             <div class="form-group mb-3">
-                <label class="form-label">Full Name</label>
+                <label class="form-label" style="color: #495057; font-weight: 500;">Full Name</label>
                 {{ form.full_name }}
             </div>
 
             <!-- Date of Birth -->
             <div class="form-group mb-3">
-                <label class="form-label">Date of Birth</label>
+                <label class="form-label" style="color: #495057; font-weight: 500;">Date of Birth</label>
                 {{ form.dob }}
-                <small class="form-text text-muted">Format: dd.mm.yyyy</small>
+                <small class="form-text" style="color: #6c757d;">Format: dd.mm.yyyy</small>
             </div>
 
             <!-- ID Number -->
             <div class="form-group mb-3">
-                <label class="form-label">ID Number</label>
+                <label class="form-label" style="color: #495057; font-weight: 500;">ID Number</label>
                 {{ form.id_number }}
             </div>
 
             <!-- Phone Number -->
             <div class="form-group mb-3">
-                <label class="form-label">Phone Number</label>
+                <label class="form-label" style="color: #495057; font-weight: 500;">Phone Number</label>
                 {{ form.phone_number }}
             </div>
 
             <!-- Email -->
             <div class="form-group mb-3">
-                <label class="form-label">Email</label>
+                <label class="form-label" style="color: #495057; font-weight: 500;">Email</label>
                 {{ form.email }}
             </div>
 
             <!-- Next of Kin Name -->
             <div class="form-group mb-3">
-                <label class="form-label">Next of Kin Name</label>
+                <label class="form-label" style="color: #495057; font-weight: 500;">Next of Kin Name</label>
                 {{ form.next_of_kin_name }}
             </div>
 
             <!-- Next of Kin Phone -->
             <div class="form-group mb-3">
-                <label class="form-label">Next of Kin Phone</label>
+                <label class="form-label" style="color: #495057; font-weight: 500;">Next of Kin Phone</label>
                 {{ form.next_of_kin_phone }}
             </div>
 
             <!-- Employment Status -->
             <div class="form-group mb-3">
-                <label class="form-label">Employment Status</label>
+                <label class="form-label" style="color: #495057; font-weight: 500;">Employment Status</label>
                 {{ form.employment_status }}
             </div>
 
             <!-- Password -->
             <div class="form-group mb-3">
-                <label class="form-label">Password</label>
+                <label class="form-label" style="color: #495057; font-weight: 500;">Password</label>
                 {{ form.password }}
             </div>
 
             <!-- Confirm Password -->
             <div class="form-group mb-3">
-                <label class="form-label">Confirm Password</label>
+                <label class="form-label" style="color: #495057; font-weight: 500;">Confirm Password</label>
                 {{ form.confirm_password }}
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn btn-success w-100 py-2">Register</button>
+            <button type="submit" class="btn w-100 py-2" style="background-color: #3498db; color: white; font-weight: 600;">Register</button>
         </form>
 
         <!-- Login Link -->
-        <p class="text-center mt-3">
-            Already have an account? <a href="{% url 'login' %}" class="text-success fw-bold">Login</a>
+        <p class="text-center mt-3" style="color: #495057;">
+            Already have an account? <a href="{% url 'login' %}" style="color: #3498db; font-weight: 600;">Login</a>
         </p>
     </div>
 </div>
@@ -122,34 +122,31 @@ document.addEventListener('DOMContentLoaded', function() {
         padding: 10px 15px;
         border: 1px solid #ced4da;
         transition: all 0.3s;
+        background-color: #f8f9fa;
+        color: #495057;
     }
 
     .form-control:focus {
-        border-color: #28a745;
-        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        border-color: #3498db;
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        background-color: #ffffff;
     }
 
     select.form-control {
         appearance: none;
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23495057' stroke='%23495057' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
         background-repeat: no-repeat;
         background-position: right 0.75rem center;
         background-size: 16px 12px;
     }
 
-    .btn-success {
-        background-color: #28a745;
-        border: none;
-        padding: 10px;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: 500;
+    .btn {
         transition: all 0.3s;
     }
 
-    .btn-success:hover {
-        background-color: #218838;
+    .btn:hover {
         transform: translateY(-1px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     .card {
