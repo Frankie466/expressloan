@@ -1,33 +1,75 @@
 {% extends 'loan/base.html' %}
+{% load static %}
 
 {% block content %}
-<div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-4 shadow-lg" style="width: 400px;">
-        <h3 class="text-center mb-4 text-success">Login to Your Account</h3>
+<div class="container d-flex justify-content-center align-items-center vh-100" style="background-color: #f8f9fa;">
+    <div class="card p-4 shadow-lg" style="width: 400px; border-radius: 15px; background-color: #ffffff; border: 1px solid #e0e0e0;">
+        <h3 class="text-center mb-4" style="color: #2c3e50;">Login to Your Account</h3>
 
         <!-- Display error message if credentials are invalid -->
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-danger">{{ message }}</div>
+                <div class="alert alert-danger" style="background-color: #f8d7da; border-color: #f5c6cb; color: #721c24;">
+                    {{ message }}
+                </div>
             {% endfor %}
         {% endif %}
 
         <form method="POST" class="mb-3">
             {% csrf_token %}
             <div class="form-group mb-3">
-                <label for="email">Email</label>
+                <label for="email" style="color: #495057; font-weight: 500;">Email</label>
                 {{ form.email }}
             </div>
             <div class="form-group mb-4">
-                <label for="password">Password</label>
+                <label for="password" style="color: #495057; font-weight: 500;">Password</label>
                 {{ form.password }}
             </div>
-            <button type="submit" class="btn btn-success w-100">Login</button>
+            <button type="submit" class="btn w-100 py-2" style="background-color: #3498db; color: white; font-weight: 600;">Login</button>
         </form>
 
-        <p class="text-center">
-            Don't have an account? <a href="{% url 'register' %}" class="text-success">Register</a>
+        <p class="text-center mt-3" style="color: #495057;">
+            Don't have an account? <a href="{% url 'register' %}" style="color: #3498db; font-weight: 600;">Register</a>
         </p>
     </div>
 </div>
+
+<!-- Form Styling -->
+<style>
+    .form-control {
+        border-radius: 8px;
+        padding: 10px 15px;
+        border: 1px solid #ced4da;
+        transition: all 0.3s;
+        background-color: #f8f9fa;
+        color: #495057;
+    }
+
+    .form-control:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        background-color: #ffffff;
+    }
+
+    .btn {
+        transition: all 0.3s;
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .alert-danger {
+        border-radius: 8px;
+        padding: 12px 15px;
+        border-left: 4px solid #dc3545;
+    }
+</style>
 {% endblock %}
