@@ -2,333 +2,166 @@
 {% load static %}
 
 {% block content %}
-<div class="registration-container">
-    <div class="registration-card">
-        <!-- Header Section -->
-        <div class="registration-header text-center mb-4">
-            <img src="{% static 'images/logo.jpg' %}" alt="Express Loan Logo" class="registration-logo mb-3">
-            <h3 class="registration-title">Create Your Account</h3>
-            <p class="text-muted">Join thousands who trust Express Loan for their financial needs</p>
-        </div>
+<div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow-lg" style="width: 500px; border-radius: 15px;">
+        <h3 class="text-center mb-4 text-success">Create an Account</h3>
 
-        <!-- Error Messages -->
+        <!-- Display Form Errors -->
         {% if form.errors %}
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong><i class="fas fa-exclamation-circle me-2"></i>Registration Error</strong>
-                <ul class="mb-0 mt-2">
+            <div class="alert alert-danger">
+                <strong>Oops!</strong> Please fix the following errors:
+                <ul>
                     {% for field, errors in form.errors.items %}
                         {% for error in errors %}
                             <li>{{ error }}</li>
                         {% endfor %}
                     {% endfor %}
                 </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endif %}
 
-        <!-- Registration Form -->
-        <form method="POST" class="registration-form">
+        <form method="POST" class="mb-3">
             {% csrf_token %}
 
-            <!-- Personal Information Section -->
-            <div class="form-section mb-4">
-                <h5 class="section-title"><i class="fas fa-user-circle me-2"></i>Personal Information</h5>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Full Name</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            {{ form.full_name }}
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Date of Birth</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                            {{ form.dob }}
-                        </div>
-                        <small class="form-text text-muted">Format: DD.MM.YYYY</small>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">ID Number</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                            {{ form.id_number }}
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Phone Number</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                            {{ form.phone_number }}
-                        </div>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Email Address</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        {{ form.email }}
-                    </div>
-                </div>
+            <!-- Full Name -->
+            <div class="form-group mb-3">
+                <label class="form-label">Full Name</label>
+                {{ form.full_name }}
             </div>
 
-            <!-- Next of Kin Section -->
-            <div class="form-section mb-4">
-                <h5 class="section-title"><i class="fas fa-users me-2"></i>Next of Kin</h5>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Full Name</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-user-friends"></i></span>
-                            {{ form.next_of_kin_name }}
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Phone Number</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-mobile-alt"></i></span>
-                            {{ form.next_of_kin_phone }}
-                        </div>
-                    </div>
-                </div>
+            <!-- Date of Birth -->
+            <div class="form-group mb-3">
+                <label class="form-label">Date of Birth</label>
+                {{ form.dob }}
+                <small class="form-text text-muted">Format: dd.mm.yyyy</small>
             </div>
 
-            <!-- Employment & Security Section -->
-            <div class="form-section mb-4">
-                <h5 class="section-title"><i class="fas fa-briefcase me-2"></i>Employment & Security</h5>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Employment Status</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-building"></i></span>
-                            {{ form.employment_status }}
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Password</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            {{ form.password }}
-                            <button class="btn btn-outline-secondary toggle-password" type="button">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                        <div class="password-strength mt-2">
-                            <div class="progress" style="height: 5px;">
-                                <div class="progress-bar" role="progressbar" style="width: 0%"></div>
-                            </div>
-                            <small class="text-muted">Password strength</small>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="form-label">Confirm Password</label>
-                        <div class="input-group">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            {{ form.confirm_password }}
-                            <button class="btn btn-outline-secondary toggle-password" type="button">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <!-- ID Number -->
+            <div class="form-group mb-3">
+                <label class="form-label">ID Number</label>
+                {{ form.id_number }}
             </div>
 
-            <!-- Terms and Conditions -->
-            <div class="form-check mb-4">
-                <input class="form-check-input" type="checkbox" id="termsCheck" required>
-                <label class="form-check-label" for="termsCheck">
-                    I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms and Conditions</a>
-                </label>
+            <!-- Phone Number -->
+            <div class="form-group mb-3">
+                <label class="form-label">Phone Number</label>
+                {{ form.phone_number }}
+            </div>
+
+            <!-- Email -->
+            <div class="form-group mb-3">
+                <label class="form-label">Email</label>
+                {{ form.email }}
+            </div>
+
+            <!-- Next of Kin Name -->
+            <div class="form-group mb-3">
+                <label class="form-label">Next of Kin Name</label>
+                {{ form.next_of_kin_name }}
+            </div>
+
+            <!-- Next of Kin Phone -->
+            <div class="form-group mb-3">
+                <label class="form-label">Next of Kin Phone</label>
+                {{ form.next_of_kin_phone }}
+            </div>
+
+            <!-- Employment Status -->
+            <div class="form-group mb-3">
+                <label class="form-label">Employment Status</label>
+                {{ form.employment_status }}
+            </div>
+
+            <!-- Password -->
+            <div class="form-group mb-3">
+                <label class="form-label">Password</label>
+                {{ form.password }}
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group mb-3">
+                <label class="form-label">Confirm Password</label>
+                {{ form.confirm_password }}
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn btn-success w-100 py-3 register-btn">
-                <i class="fas fa-user-plus me-2"></i>Create Account
-            </button>
+            <button type="submit" class="btn btn-success w-100 py-2">Register</button>
         </form>
 
         <!-- Login Link -->
-        <div class="text-center mt-4">
-            <p class="mb-0">Already have an account? <a href="{% url 'login' %}" class="text-success fw-bold">Sign In</a></p>
-        </div>
+        <p class="text-center mt-3">
+            Already have an account? <a href="{% url 'login' %}" class="text-success fw-bold">Login</a>
+        </p>
     </div>
 </div>
 
-<!-- Terms and Conditions Modal -->
-<div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="termsModalLabel">Terms and Conditions</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                {% include 'loan/terms_and_conditions.html' %}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal">I Understand</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Date Formatting Script -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const dobInput = document.getElementById('id_dob');
+    
+    if (dobInput) {
+        dobInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/[^0-9]/g, '');
+            let formatted = '';
+            
+            if (value.length > 0) formatted += value.substring(0, 2);
+            if (value.length >= 2) formatted += '.' + value.substring(2, 4);
+            if (value.length >= 4) formatted += '.' + value.substring(4, 8);
+            
+            e.target.value = formatted;
+        });
+    }
+});
+</script>
 
-<!-- Custom Styles -->
+<!-- Form Styling -->
 <style>
-    .registration-container {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #f8f9fa;
-        padding: 20px;
-    }
-
-    .registration-card {
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        padding: 30px;
-        width: 100%;
-        max-width: 800px;
-    }
-
-    .registration-header {
-        padding-bottom: 15px;
-        border-bottom: 1px solid #eee;
-    }
-
-    .registration-logo {
-        height: 60px;
-        width: auto;
-    }
-
-    .registration-title {
-        color: #28a745;
-        font-weight: 700;
-    }
-
-    .form-section {
-        padding: 20px;
-        border-radius: 10px;
-        background-color: #f8f9fa;
-        border-left: 4px solid #28a745;
-    }
-
-    .section-title {
-        color: #28a745;
-        margin-bottom: 20px;
-        font-weight: 600;
-    }
-
-    .form-label {
-        font-weight: 500;
-        margin-bottom: 5px;
-    }
-
-    .form-control, .form-select {
+    .form-control {
         border-radius: 8px;
-        padding: 12px 15px;
+        padding: 10px 15px;
         border: 1px solid #ced4da;
         transition: all 0.3s;
     }
 
-    .form-control:focus, .form-select:focus {
+    .form-control:focus {
         border-color: #28a745;
-        box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
     }
 
-    .input-group-text {
-        background-color: #e9ecef;
-        border-right: none;
+    select.form-control {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 16px 12px;
     }
 
-    .register-btn {
-        font-weight: 600;
-        letter-spacing: 0.5px;
+    .btn-success {
+        background-color: #28a745;
+        border: none;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
         transition: all 0.3s;
     }
 
-    .register-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    .btn-success:hover {
+        background-color: #218838;
+        transform: translateY(-1px);
     }
 
-    .toggle-password {
-        border-left: none;
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .progress-bar {
-        background-color: #28a745;
-        transition: width 0.5s;
-    }
-
-    @media (max-width: 768px) {
-        .registration-card {
-            padding: 20px;
-        }
-        
-        .form-section {
-            padding: 15px;
-        }
+    .alert-danger {
+        border-radius: 8px;
+        padding: 12px 15px;
+        border-left: 4px solid #dc3545;
     }
 </style>
-
-<!-- JavaScript Enhancements -->
-<script>
-    // Date formatting
-    document.getElementById('id_dob').addEventListener('input', function(e) {
-        let value = e.target.value.replace(/[^0-9]/g, '');
-        let formatted = '';
-        
-        if (value.length > 0) formatted += value.substring(0, 2);
-        if (value.length >= 2) formatted += '.' + value.substring(2, 4);
-        if (value.length >= 4) formatted += '.' + value.substring(4, 8);
-        
-        e.target.value = formatted;
-    });
-
-    // Toggle password visibility
-    document.querySelectorAll('.toggle-password').forEach(button => {
-        button.addEventListener('click', function() {
-            const input = this.parentElement.querySelector('input');
-            const icon = this.querySelector('i');
-            
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.classList.replace('fa-eye', 'fa-eye-slash');
-            } else {
-                input.type = 'password';
-                icon.classList.replace('fa-eye-slash', 'fa-eye');
-            }
-        });
-    });
-
-    // Password strength indicator
-    document.getElementById('id_password').addEventListener('input', function(e) {
-        const password = e.target.value;
-        const strengthBar = document.querySelector('.progress-bar');
-        let strength = 0;
-        
-        if (password.length > 0) strength += 20;
-        if (password.length >= 8) strength += 20;
-        if (/[A-Z]/.test(password)) strength += 20;
-        if (/[0-9]/.test(password)) strength += 20;
-        if (/[^A-Za-z0-9]/.test(password)) strength += 20;
-        
-        strengthBar.style.width = strength + '%';
-        
-        if (strength < 40) {
-            strengthBar.className = 'progress-bar bg-danger';
-        } else if (strength < 80) {
-            strengthBar.className = 'progress-bar bg-warning';
-        } else {
-            strengthBar.className = 'progress-bar bg-success';
-        }
-    });
-</script>
 {% endblock %}
