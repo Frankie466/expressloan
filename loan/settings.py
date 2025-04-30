@@ -13,8 +13,13 @@ SECRET_KEY = 'django-insecure-j&32z$hr_2gq_5la*8g@gy^_wkane5eu+2a+92ybxt)67__!z8
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
-ALLOWED_HOSTS = ['.vercel.app','127.0.0.1','.now.sh']
+ALLOWED_HOSTS = [
+    'expressloan.co.ke',  # Your custom domain
+    '.vercel.app',       # Vercel's default domain
+    '.now.sh',           # Legacy Vercel domain
+    '127.0.0.1',         # Local development
+    'localhost',         # Local development
+]
 
 
 # Application definition
