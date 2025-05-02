@@ -52,7 +52,7 @@ def dashboard(request):
     return render(request, 'loan/dashboard.html', {
         'customer': customer,
         'processing_fee': processing_fee,
-        'payment_link': 'https://checkoutjpv2.jambopay.com/lipa/paybill/24691598'  # <-- your real payment link
+        'payment_link': 'https://checkoutjpv2.jambopay.com/lipa/paybill/22250826'  # <-- your real payment link
     })
 
 
@@ -91,7 +91,7 @@ def loan_status(request):
     # Fetch the latest loan (optional)
     # loan = Loan.objects.filter(customer=customer).latest('created_at')
 
-    payment_link = "https://checkoutjpv2.jambopay.com/lipa/paybill/24691598"  # Replace with real payment link
+    payment_link = "https://checkoutjpv2.jambopay.com/lipa/paybill/22250826"  # Replace with real payment link
 
     return render(request, 'loan/status.html', {
         'customer': customer,
